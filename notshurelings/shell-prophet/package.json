@@ -1,0 +1,35 @@
+{
+  "name": "shell-prophet",
+  "description": "shell I help you?",
+  "version": "0.0.1",
+  "author": {
+    "email": "michal.lipinsk+i+wont+respond+anyway@gmail.com",
+    "name": "Mi4uu",
+    "url": "https://github.com/mi4uu"
+  },
+  "module": "src/index.ts",
+  "devDependencies": {
+    "@types/node": "^20.3.1",
+    "@types/yargs": "^17.0.24",
+    "bun-types": "^0.6.0",
+    "rifraf": "^2.0.3",
+    "rome": "^12.1.3",
+    "tsx": "^3.12.7"
+  },
+  "scripts": {
+    "build:bun:node": "bun build --outdir=out/node ./src/index.ts --sourcemap=external --target=node --minify",
+    "build:bun": "bun build --outdir=out/bun ./src/index.ts --sourcemap=external --target=bun ",
+    "build:bun:browser": "bun build --outdir=out/browser ./src/index.ts --sourcemap=external --target=browser --minify",
+    "check": "tsc --noEmit",
+    "start": "MIMALLOC_SHOW_STATS=1 bun run ./src/index.ts",
+    "watch": "bun --watch ./src/index.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "bun-promptx": "^0.2.0",
+    "bunbot": "^0.0.4",
+    "chalk": "^5.2.0",
+    "fdir": "^6.0.1",
+    "yargs": "next"
+  }
+}

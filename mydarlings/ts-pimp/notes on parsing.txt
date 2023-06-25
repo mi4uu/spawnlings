@@ -1,0 +1,87 @@
+SyntaxKind.ExportKeyword
+
+------------------------------------------------------------------------------------
+
+import accountConfigurationApi from '../../../services/accountService';
+ImportDeclaration :
+    ImportKeyword
+    ImportClausule:
+        Identifier
+    FromKeyword
+    StringLiteral
+
+
+
+------------------------------------------------------------------------------------
+
+import { AccountPageFilter } from '@ac/finance/types/account-invoices';
+
+ImportDeclaration :
+    ImportKeyword
+    ImportClausule:
+        NamedImports
+            OpenBraceToken
+            SyntaxList:
+                ImportSpecifier:
+                    Identifier
+            CloseBraceToken
+    FromKeyword
+    StringLiteral
+
+------------------------------------------------------------------------------------
+
+
+
+import dupa, { AccountPageFilter } from '@ac/finance/types/account-invoices';
+
+ImportDeclaration :
+    ImportKeyword
+    ImportClausule:
+        Identifier
+        ComaToken
+        NamedImports
+            OpenBraceToken
+            SyntaxList:
+                ImportSpecifier:
+                    Identifier
+            CloseBraceToken
+    FromKeyword
+    StringLiteral
+
+
+    
+
+    ------------------------------------------------------------------------------------
+
+
+import * as dupa ...
+
+
+ImportDeclaration :
+    ImportKeyword
+    ImportClausule:
+        NamespaceImport:
+            AsteriskToken
+            AsKeyword
+            Identifier
+
+
+
+
+            ------------------------------------------------------------------------------------
+            ------------------------------------------------------------------------------------
+            ------------------------------------------------------------------------------------
+            ------------------------------------------------------------------------------------
+
+
+        todo:
+            - regex or traverse to parse ?
+                - idea - why bother to parse files by ts on init ? just regexp it
+            - get all of export statements per file
+            - get who is referencing those exports ?
+            - get who is referencing by import * as !
+            - handle export from 
+            - handle export * from
+            -make a map
+
+

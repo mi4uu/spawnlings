@@ -1,0 +1,49 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "const input = `\nimport type { TsConfig } from \"./get-tsconfig\";\nimport { getCliArgs, getAllFiles } from \"./ci\";\nimport { createTsHost, getPathsMappings as getPath, parseTsConfig } from \"@tsserver/create-ts-host\"\nimport ts, { SyntaxKind } from \"typescript\";\nimport Document, \n{ Html, \n  Head, \n  Main, NextScript\n  , DocumentContext } \nfrom 'next/document'\n\nimport * as assert from \"assert\"\nimport chalk from \"chalk\";\n\nexport const Log = (a:string, b:number)=>console.log(a,b)\nconst Log2 = Log\nexport default Log2\n\nexport const lorem = \"lorem ipsum\"\nexport type Lorem = typeof lorem\ntype LogResponse = ReturnType<typeof Log>\n\n\n`\n\nconsole.log(input)\n// atoms\nconst SPACE = String.raw`[\\n\\t\\r\\s\\v]*`\nconst NAME=String.raw`(?<name>[\\w$][\\w\\d]*)`\n\nconst regexpStr = String.raw`\\{${SPACE}${NAME}${SPACE}\\}`\nconst regexp = new RegExp(regexpStr, 'gim');\n\nconsole.log(\"regex: \",regexpStr)\nconst result = [...input.matchAll(regexp)]\n\nconsole.log(\"result:\\n\", result)\n//console.log(\"result:\\n\", JSON.stringify(result,null,2))\n//console.log(\"result:\\n\", result.join('\\n'))\n// while ((match = regexp.exec(str)) !== null) {\n//   console.log(\n//     `Found ${match[0]} start=${match.index} end=${regexp.lastIndex}.`,\n//   );\n// }\n\n\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stderr",
+                            "value": [
+                                "Debugger ending on ws://127.0.0.1:59428/cf12ab8c-bb69-453d-bbc0-fddb68181a3f",
+                                ""
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "ReferenceError",
+                                "message": "exports is not defined",
+                                "stack": "    at <Cell 1> [4, 1]\n    at <Cell 1> [38, 46]\n    at Script.runInContext (node:vm:134:12)\n    at Script.runInNewContext (node:vm:139:17)\n    at Object.runInNewContext (node:vm:291:38)\n    at C (/Users/zeno/.vscode-insiders/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:113345)\n    at t.execCode (/Users/zeno/.vscode-insiders/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:114312)\n    at k.<anonymous> (/Users/zeno/.vscode-insiders/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:142156)\n    at k.emit (node:events:511:28)\n    at k.emit (node:domain:489:12)"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(SPACE)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        }
+    ]
+}

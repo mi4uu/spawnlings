@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext"
+    ],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "noEmit": true,
+    "explainFiles": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "types": [
+      // "web",
+      "bun-types", // add Bun global
+      "node"
+    ],
+    "paths": {
+      "@tsserver/*": [
+        "./src/ts-server/*"
+      ],
+      "@get/*": [
+        "./src/getters/*"
+      ],
+      "@store": [
+        "./src/store/store.ts"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "out",
+    "node_modules"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "lib": [
+            "ESNext"
+        ],
+        "module": "esnext",
+        "target": "esnext",
+        "moduleResolution": "node",
+        "noEmitOnError": true,
+        "moduleDetection": "force",
+        "allowImportingTsExtensions": false,
+        "strict": true,
+        "downlevelIteration": false,
+        "skipLibCheck": true,
+        "outDir": "out/tsc/",
+        "jsx": "preserve",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs": true,
+        "noEmit": false,
+        "explainFiles": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "types": [
+            "node"
+        ]
+    }
+}

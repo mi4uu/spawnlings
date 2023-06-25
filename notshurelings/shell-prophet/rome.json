@@ -1,0 +1,49 @@
+{
+  "$schema": "https://docs.rome.tools/schemas/12.1.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noUselessFragments": "warn",
+        "useSimplifiedLogicExpression": "error"
+      },
+      "suspicious": {},
+      "nursery": {
+        "noConfusingArrow": "off",
+        "noBannedTypes": "error",
+        "noConstantCondition": "error",
+        "noForEach": "error",
+        "useCamelCase": "error",
+        "useExhaustiveDependencies": "off",
+        "useGroupedTypeImport": "error",
+        "useHookAtTopLevel": "error",
+        "useIsNan": "error",
+        "useLiteralEnumMembers": "error",
+        "useLiteralKeys": "error",
+        "useSimpleNumberKeys": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "warn"
+      },
+      "style": {
+        "useBlockStatements": "error",
+        "noNegationElse": "error",
+        "useExponentiationOperator": "error",
+        "useShorthandArrayType": "error",
+        "useSingleCaseStatement": "error"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentSize": 2,
+    "lineWidth": 80,
+    "ignore": []
+  }
+}
