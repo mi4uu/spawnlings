@@ -1,57 +1,67 @@
 import ts from 'typescript'
 
+interface NamedMember {
+  name : string
+  isType : boolean
+  renamedFrom? : string
+}
+export interface ImportParts {
+  importPath : string
+  namedMembers : NamedMember[]
+  defaultMember? : string
+  asteriskImport? : string
+  defaultIsType? : boolean
+}
 export const getImportParts = (
   node : ts.ImportDeclaration,
-) => {
+) : ImportParts => {
+  if ( !ts.isImportDeclaration( node ) ) {
+    throw Error( 'not an import declaration' )
+  }
+
   const importClause = node.importClause
-  const importPath = node.moduleSpecifier.getText().slice(
-    1,
-    -1,
-  )
+  const importPath = 'text' in node.moduleSpecifier
+    ? node.moduleSpecifier.text as string
+    : node.moduleSpecifier.getText().slice(
+      1,
+      -1,
+    )
   const namedBindings = importClause
     && importClause.namedBindings
 
-  let namedMembers : { [key : string] : boolean } = {}
+  let namedMembers : NamedMember[] = []
   let defaultMember : string | undefined
-  let asteriskImport = false
-  let renaming : { [key : string] : string } = {}
+  let asteriskImport = undefined
 
   if ( namedBindings ) {
     if ( ts.isNamespaceImport( namedBindings ) ) {
-      asteriskImport = true
+      asteriskImport = namedBindings
+        .name
+        ?.escapedText as string
     }
     else {
       namedBindings.elements.forEach( ( elem ) => {
-        const name = elem.name.getText()
-        const isType = elem.propertyName != null
-        namedMembers[name] = isType
+        namedMembers.push( {
+          name: elem.name.text,
+          isType: elem.isTypeOnly,
+          renamedFrom: elem.propertyName?.escapedText as
+            | string
+            | undefined,
+        } )
       } )
     }
   }
 
   if ( importClause && importClause.name ) {
-    defaultMember = importClause.name.getText()
-  }
-
-  if (
-    Object.keys( namedMembers ).length
-    && Object.keys( namedMembers ).some(( name ) =>
-      name.includes( ' as ' )
-    )
-  ) {
-    Object.keys( namedMembers ).forEach( ( name ) => {
-      const [ before, after ] = name.split( ' as ' )
-      renaming[before.trim()] = after.trim()
-    } )
+    defaultMember = importClause.name.text
+    importClause.isTypeOnly
   }
 
   return {
     importPath,
     namedMembers,
-    defaultMember,
+    defaultMember: importClause?.name?.text,
     asteriskImport,
-    renaming,
-    pos0: node.getStart(),
-    pos1: node.getEnd(),
+    defaultIsType: importClause && importClause.isTypeOnly,
   }
 }
