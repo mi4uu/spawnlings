@@ -19,6 +19,7 @@
     "explainFiles": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+
     "types": [
       // "web",
       "bun-types" // add Bun global

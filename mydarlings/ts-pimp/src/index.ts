@@ -1,10 +1,9 @@
 // import jc from "json-cycle";
+import { getImportParts } from '@get/get-import-parts'
 import { getPathsMappings } from '@get/get-paths-mappings'
 import { parseTsConfig } from '@tsserver/config/parse-ts-config'
 import { readRawTsConfig } from '@tsserver/config/read-raw-ts-config'
 import { createTsHost } from '@tsserver/create-ts-host'
-import assert from 'assert'
-import chalk from 'chalk'
 import { resolve } from 'path'
 import ts, { SyntaxKind } from 'typescript'
 import { getCliArgs } from './ci'
@@ -16,25 +15,14 @@ console.log( `htop -p ${process.pid}` )
 console.log( { parsedArgs: args } )
 
 let measure = measureit( 'readRawTsConfig' )
-const configRaw = await readRawTsConfig(
-  {
-    exclude: [],
-  },
-  args.tsConfig,
-)
+const configRaw = await readRawTsConfig( { exclude: [] }, args.tsConfig )
 console.log( measure.stop() )
 // console.log({ configRaw });
 
-const { host, getCreatedFiles } = createTsHost(
-  configRaw,
-  args.verbose,
-  true,
-)
+const { host, getCreatedFiles } = createTsHost( configRaw, args.verbose, true )
 const tsConfig = parseTsConfig( configRaw, args.baseDir )
 
-console.log(
-  '--------------------------------------------------',
-)
+console.log( '--------------------------------------------------' )
 
 // console.log({
 //   tsConfigOptions: tsConfig.options,
@@ -47,38 +35,22 @@ console.log( measure.stop() )
 
 console.log( {
   allFiles: allFiles.length,
-  withAliases: Object
-    .keys( mapped.filesWithAliases )
-    .length,
-  withMultipleAliases: Object
-    .values( mapped.filesWithAliases )
-    .filter(
-      ( x ) => (x as string[]).length > 1,
-    )
-    .length,
-  withoutAliases: Object
-    .keys( mapped.filesWithoutAliases )
-    .length,
+  withAliases: Object.keys( mapped.filesWithAliases ).length,
+  withMultipleAliases: Object.values( mapped.filesWithAliases ).filter(( x ) => (x as string[]).length > 1).length,
+  withoutAliases: Object.keys( mapped.filesWithoutAliases ).length,
 } )
 if ( args.verbose ) {
   console.log( allFiles.filter )
 }
 
-console.log(
-  '==================================================',
-)
+console.log( '==================================================' )
 
-const inputFile =
-  '/Users/zeno/Work/nano/acrocharge/apps/front/console/pages/_app.tsx'
+const inputFile = '/Users/zeno/Work/nano/acrocharge/apps/front/console/pages/_app.tsx'
 // const program = ts.createProgram([inputFile], tsConfig.options, host);
 // .slice(0, 500)
-const inputFiles = allFiles.map(( x ) =>
-  resolve( args.baseDir, x )
-)
+const inputFiles = allFiles.map(( x ) => resolve( args.baseDir, x ))
 
-const genAstOnlyOptions : ts.CompilerOptions = {
-  ...tsConfig.options,
-}
+const genAstOnlyOptions : ts.CompilerOptions = { ...tsConfig.options }
 measure = measureit( 'create program' )
 const program = ts.createProgram( {
   options: genAstOnlyOptions,
@@ -99,10 +71,7 @@ console.log( measure.stop() )
 const genFiles = getCreatedFiles()
 const genFilesNames = genFiles.map(( x ) => x[0])
 const genUniqueFilesNames = new Set( genFilesNames )
-console.log( {
-  genFiles: genFilesNames.length,
-  genUniqueFilesNames: genUniqueFilesNames.size,
-} )
+console.log( { genFiles: genFilesNames.length, genUniqueFilesNames: genUniqueFilesNames.size } )
 // console.log({emitResult})
 
 // const allDiagnostics = ts
@@ -119,16 +88,8 @@ console.log( {
 //   console.warn(message);
 // }
 
-const getFileDetails = (
-  program : ts.Program,
-  fileSrc : string,
-) => {
-  const stat = {
-    nodes: 0,
-    lines: 0,
-    imports: 0,
-    exports: 0,
-  }
+const getFileDetails = ( program : ts.Program, fileSrc : string ) => {
+  const stat = { nodes: 0, lines: 0, imports: 0, exports: 0 }
   const source = program.getSourceFile( fileSrc ) // ?? program.getSourceFileByPath(fileSrc);
   function visitNode( node : ts.Node ) {
     stat.nodes += 1
@@ -161,23 +122,14 @@ const getFileDetails = (
   }
   else {
     //   console.log(program.getRootFileNames())
-    console.warn(
-      { source },
-      `File does not exist: ${fileSrc}`,
-    )
+    console.warn( { source }, `File does not exist: ${fileSrc}` )
 
     throw Error( `File does not exist: ${fileSrc}` )
   }
 }
 
 measure = measureit( 'get files details' )
-const stat = {
-  nodes: 0,
-  lines: 0,
-  imports: 0,
-  files: 0,
-  errors: 0,
-}
+const stat = { nodes: 0, lines: 0, imports: 0, files: 0, errors: 0 }
 for ( const f of inputFiles ) {
   // console.log(`File ${f}:`)
   // const measureFile = measureit("get details")

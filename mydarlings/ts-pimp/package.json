@@ -12,13 +12,18 @@
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/node": "^20.3.1",
     "@types/yargs": "^17.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
     "bun-types": "^0.6.0",
     "esbuild": "^0.18.4",
+    "eslint": "^8.43.0",
+    "eslint-plugin-unicorn": "^47.0.0",
     "jsonrepair": "^3.2.0",
     "rifraf": "^2.0.3",
     "rome": "^12.1.3",
     "tsup": "^7.0.0",
     "tsx": "^3.12.7",
+    "type-fest": "^3.12.0",
     "typescript": "^5.0.0"
   },
   "scripts": {
@@ -29,9 +34,8 @@
     "build:esbuild": "bun run .esbuild.js ",
     "check": "tsc --noEmit",
     "start": "MIMALLOC_SHOW_STATS=1 bun run ./src/index.ts",
-    "start:justt":"bun run ./src/index.ts --tsConfig=/Users/zeno/Work/nano/acrocharge/tsconfig.json",
-    "start:justt2":"bun run ./src/index.ts --tsConfig=/Users/zeno/Work/nano/acrocharge/tsconfig.base.json",
-
+    "start:justt": "bun run ./src/index.ts --tsConfig=/Users/zeno/Work/nano/acrocharge/tsconfig.json",
+    "start:justt2": "bun run ./src/index.ts --tsConfig=/Users/zeno/Work/nano/acrocharge/tsconfig.base.json",
     "watch": "bun --watch ./src/index.ts",
     "start:build:run:bun": "bun run build:bun && node out/bun/index.ts",
     "start:node": "bun run build:node && node out/node/index.ts",
@@ -49,6 +53,7 @@
     "glob": "^10.2.7",
     "graceful-fs": "^4.2.11",
     "json-cycle": "^1.5.0",
+    "moderndash": "^3.7.2",
     "yargs": "next"
   },
   "tsup": {

@@ -1,5 +1,4 @@
 import ts from 'typescript'
-
 interface NamedMember {
   name : string
   isType : boolean
@@ -39,11 +38,12 @@ export const getImportParts = (
         .name
         ?.escapedText as string
     }
-    else {
+    else if ( ts.isNamedImports( namedBindings ) ) {
       namedBindings.elements.forEach( ( elem ) => {
         namedMembers.push( {
           name: elem.name.text,
-          isType: elem.isTypeOnly,
+          isType: importClause.isTypeOnly
+            || elem.isTypeOnly,
           renamedFrom: elem.propertyName?.escapedText as
             | string
             | undefined,
@@ -52,16 +52,59 @@ export const getImportParts = (
     }
   }
 
-  if ( importClause && importClause.name ) {
-    defaultMember = importClause.name.text
-    importClause.isTypeOnly
+  if ( importClause && ts.isImportClause( importClause ) ) {
+    if ( importClause.name ) {
+      defaultMember = importClause.name.text
+    }
+    if (
+      importClause.namedBindings
+      && ts.isNamespaceImport(
+        importClause.namedBindings,
+      )
+    ) {
+      asteriskImport = importClause.namedBindings.name.text
+    }
   }
 
   return {
     importPath,
     namedMembers,
-    defaultMember: importClause?.name?.text,
+    defaultMember,
     asteriskImport,
-    defaultIsType: importClause && importClause.isTypeOnly,
+    defaultIsType: Boolean( defaultMember )
+      && importClause?.isTypeOnly,
   }
+}
+
+export const getImportStringFromParts = (
+  parts : ImportParts,
+) => {
+  const defaultPart = parts.defaultMember
+    ? `${
+      parts.defaultIsType ? 'type ' : ''
+    } ${parts.defaultMember}`
+    : undefined
+  const namedParts = parts.namedMembers?.length
+    ? '{ ' + parts
+      .namedMembers
+      .map( ( member ) => {
+        const name = member.renamedFrom
+          ? `${
+            member.renamedFrom ?? member.name
+          } as ${member.name}`
+          : member.name
+        return `${member.isType ? 'type ' : ''}${name}`
+      } )
+      .join( ', ' )
+      + ' }'
+    : undefined
+  const asterriskPart = parts.asteriskImport
+    ? `* as ${parts.asteriskImport}`
+    : undefined
+  const imports = [ defaultPart, asterriskPart, namedParts ]
+    .filter( Boolean )
+    .join( ', ' )
+
+  return `import ${imports} from '${parts.importPath}'\n`
+    .replaceAll( /\s{2,}/g, ' ' )
 }

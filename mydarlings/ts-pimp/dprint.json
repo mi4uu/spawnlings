@@ -1,6 +1,6 @@
 {
   "typescript": {
-    "lineWidth": 60,
+    "lineWidth": 120,
     "indentWidth": 2,
     "useTabs": false,
     "semiColons": "asi",
@@ -14,7 +14,7 @@
     "trailingCommas": "onlyMultiLine",
     "operatorPosition": "nextLine",
     "preferHanging": false,
-    "preferSingleLine": false,
+    "preferSingleLine": true,
     "arrowFunction.useParentheses": "force",
     "jsx.bracketPosition": "nextLine",
     "jsx.forceNewLinesSurroundingContent": true,
