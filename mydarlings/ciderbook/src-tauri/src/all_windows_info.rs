@@ -7,7 +7,7 @@ use core_foundation::dictionary::CFDictionary;
 use core_graphics::display::CGDisplay;
 use core_graphics::window::{CGWindowListCopyWindowInfo, kCGWindowListOptionIncludingWindow};
 pub fn get_all_windows_info() -> Vec<String> {
-  let display_id = unsafe { CGDisplay::main().id };
+  let display_id =CGDisplay::main().id ;
   let arr_ref = unsafe { CGWindowListCopyWindowInfo(kCGWindowListOptionIncludingWindow, display_id) };
 
   let window_list: CFArray<CFDictionary<CFType>> = unsafe {

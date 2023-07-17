@@ -19,10 +19,11 @@ fn greet(name: &str) -> String {
 #[tauri::command]
 fn get_windows_list() -> Result<String,String> {
     let windows_list = get_all_windows_info();
+    match serde_json::to_string(&windows_list) {
+        Ok(s) => Ok(s),
+        Err(e) => Err(e.to_string())
+    }
 
-
-    Ok(serde_json::to_string(&windows_list).unwrap())
-    //return windows_list.into_iter().collect();
 
 }
 
