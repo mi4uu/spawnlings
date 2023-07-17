@@ -20,5 +20,5 @@ pub fn get_all_windows_info() -> Vec<String> {
     let window_data = format!("{:?}",  window_info);
     windows_list.push(window_data.clone());
   }
-  return windows_list;
+  windows_list
 }

@@ -1,15 +1,15 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-use tauri::{CustomMenuItem, SystemTray, SystemTrayMenu, SystemTrayEvent, SystemTrayMenuItem};
+use tauri::{SystemTray, SystemTrayMenu};
 use tauri::Manager;
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-use serde_json;
+
 
 mod all_windows_info;
 use all_windows_info::get_all_windows_info; // Import the function
 
 mod windowlist;
-use windowlist::get_window_list; // Import the function
+ // Import the function
 
 
 #[tauri::command]
@@ -21,7 +21,7 @@ fn get_windows_list() -> Result<String,String> {
     let windows_list = get_all_windows_info();
 
 
-    return Ok(serde_json::to_string(&windows_list).unwrap());
+    Ok(serde_json::to_string(&windows_list).unwrap())
     //return windows_list.into_iter().collect();
 
 }

@@ -40,9 +40,9 @@ fn get_attr(item:&CFDictionary<CFType, CFType>, attr:*const core_foundation_sys:
 
     let window_name_cfstring = unsafe { CFString::wrap_under_get_rule(window_name_cfstrref) };
     let window_name = window_name_cfstring.to_string();
-    return Some(window_name.clone());
+    return Some(window_name);
   }
-  return None
+  None
 }
 
 pub fn get_window_list() {
@@ -54,7 +54,7 @@ pub fn get_window_list() {
     };
     for window_info in window_list.iter() {
 
-      let window = unsafe { WindowInfo {
+      let _window = unsafe { WindowInfo {
         WindowNumber: get_attr(&window_info, CGW::kCGWindowNumber),
         WindowStoreType: get_attr(&window_info, CGW::kCGWindowStoreType),
         WindowLayer: get_attr(&window_info, CGW::kCGWindowLayer),
