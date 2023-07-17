@@ -43,6 +43,14 @@ pub fn get_window_list2() {
         if let Some(window_is_on_screen) = get_attr(&window_info, unsafe { std::mem::transmute(kCGWindowIsOnscreen) }) {
           println!("window_is_on_screen: {}", window_is_on_screen);
         }
+
+
+
+
+
+
+
+
         //  *name_counts.entry(window_name).or_insert(0) += 1;
     }
 
