@@ -1,26 +1,27 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use tauri::{CustomMenuItem, SystemTray, SystemTrayMenu, SystemTrayEvent, SystemTrayMenuItem};
-// use tauri::Manager;
+use tauri::Manager;
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+use serde_json;
 
 mod all_windows_info;
 use all_windows_info::get_all_windows_info; // Import the function
+
+mod windowlist;
+use windowlist::get_window_list; // Import the function
+
 
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 #[tauri::command]
-fn get_windows_list() -> Vec<String> {
+fn get_windows_list() -> Result<String,String> {
     let windows_list = get_all_windows_info();
-    for window in windows_list.clone() {
-    //    println!("WINDOW: {}", window);
 
-    }
-    let result: Vec<String> = vec!["Hello".to_string(), "World".to_string()];
-    println!("RESULT in rust returned: {:?}", result.clone());
-    return result
+
+    return Ok(serde_json::to_string(&windows_list).unwrap());
     //return windows_list.into_iter().collect();
 
 }
@@ -31,7 +32,15 @@ fn main() {
         .with_menu(tray_menu);
 
 
-      tauri::Builder::default()
+      tauri::Builder::default()  .setup(|app| {
+        #[cfg(debug_assertions)] // only include this code on debug builds
+        {
+          let window = app.get_window("main").unwrap();
+          window.open_devtools();
+          window.close_devtools();
+        }
+        Ok(())
+      })
       .system_tray(system_tray)
       .invoke_handler(tauri::generate_handler![get_windows_list])
 

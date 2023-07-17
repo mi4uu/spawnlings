@@ -13,8 +13,9 @@ description = "A Tauri App"
 tauri-build = { version = "1.4", features = [] }
 
 [dependencies]
-core-foundation = "0.9"
-core-graphics = "0.19"
+core-foundation = "0.9.3"
+core-foundation-sys = "0.8.4"
+core-graphics = "0.23.1"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 tauri = { version = "1.4", features = ["macos-private-api", "system-tray", "shell-open"] }
@@ -23,3 +24,6 @@ tauri = { version = "1.4", features = ["macos-private-api", "system-tray", "shel
 # this feature is used for production builds or when `devPath` points to the filesystem
 # DO NOT REMOVE!!
 custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+linter = "clippy"
