@@ -1,0 +1,19 @@
+{
+  "name": "noisemaker",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun build ./src/index.ts --sourcemap=external --target=bun --outdir=out",
+    "run:electron": "bunx electron ./out/index.js"
+  },
+  "devDependencies": {
+    "bun-types": "^0.6.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "electron": "^25.2.0",
+    "menubar": "^9.3.0"
+  }
+}

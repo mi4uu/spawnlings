@@ -1,0 +1,59 @@
+{
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:unicorn/recommended",
+    "plugin:promise/recommended"
+  ],
+  "env": {
+    "node": true,
+    "browser": false,
+    "bun": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "promise"
+  ],
+  "settings": {
+    "import/core-modules": [
+      "vscode"
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "impliedStrict": true,
+    "createDefaultProgram": true
+  },
+  "rules": {
+    "array-callback-return": "error",
+    "prefer-template": "warn",
+    "prefer-promise-reject-errors": "error",
+    "require-unicode-regexp": "error",
+    "yoda": "error",
+    "prefer-spread": "error",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/explicit-length-check": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
+}

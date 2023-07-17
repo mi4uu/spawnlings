@@ -1,0 +1,156 @@
+
+diff --git a/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.module.ts b/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.module.ts
+index 350bbd1f6d..4f0f6ad84c 100644
+--- a/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.module.ts
++++ b/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.module.ts
+@@ -1,12 +1,17 @@
+ import { Module } from '@nestjs/common';
+ import { DynamicDocumentController } from './dynamic-document.controller';
+ import { DynamicDocumentService } from './dynamic-document.service';
+ import { HealthCheckModule } from '@ac/nest-health-check';
+ import { Auth0Module, ScreenshotTemplatesJwtStrategy } from '@ac/nest-auth0';
++import { DynamicDocumentDalModule } from '@ac/dynamic-document/database';
+
+ @Module({
+-	imports: [Auth0Module.register(new ScreenshotTemplatesJwtStrategy()), HealthCheckModule.register()],
++	imports: [
++		Auth0Module.register(new ScreenshotTemplatesJwtStrategy()),
++		HealthCheckModule.register(),
++		DynamicDocumentDalModule,
++	],
+ 	controllers: [DynamicDocumentController],
+ 	providers: [DynamicDocumentService],
+ })
+ export class DynamicDocumentModule {}
+diff --git a/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.service.spec.ts b/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.service.spec.ts
+index 29773f1b89..7e778ed9a9 100644
+--- a/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.service.spec.ts
++++ b/acrocharge/apps/services/dynamic-document/src/app/dynamic-document.service.spec.ts
+@@ -1,21 +1,121 @@
+ import { Test } from '@nestjs/testing';
+-
+ import { DynamicDocumentService } from './dynamic-document.service';
++import { rootMongooseTestModule } from '@ac/nest-mongo-connection';
++import { getModelToken, MongooseModule } from '@nestjs/mongoose';
++import {
++	DYNAMIC_DOCUMENT_SCHEMA_NAME,
++	DynamicDocumentDalModule,
++	DynamicDocumentDalService,
++	DynamicDocumentModel,
++	DynamicDocumentSchema,
++} from '@ac/dynamic-document/database';
++import { reasonGroupIdFixture } from './__tests__/fixtures/reasonGroupId.fixture';
++import { Model } from 'mongoose';
++import { dynamicDocumentDtoFixture } from './__tests__/fixtures/dynamicDocumentDto.fixture';
+
+ describe('DynamicDocumentService', () => {
+-	let service: DynamicDocumentService;
++	let dynamicDocumentService: DynamicDocumentService;
++	let dynamicDocumentDalService;
++	let dynamicDocumentModel;
+
+ 	beforeAll(async () => {
+ 		const app = await Test.createTestingModule({
+ 			providers: [DynamicDocumentService],
++			imports: [
++				rootMongooseTestModule(),
++				MongooseModule.forFeature([
++					{
++						name: DYNAMIC_DOCUMENT_SCHEMA_NAME,
++						schema: DynamicDocumentSchema,
++					},
++				]),
++				DynamicDocumentDalModule,
++			],
+ 		}).compile();
+
+-		service = app.get<DynamicDocumentService>(DynamicDocumentService);
++		dynamicDocumentModel = app.get<Model<DynamicDocumentModel>>(getModelToken(DYNAMIC_DOCUMENT_SCHEMA_NAME));
++		dynamicDocumentDalService = app.get<DynamicDocumentDalService>(DynamicDocumentDalService);
++		await dynamicDocumentDalService.onModuleInit();
++		dynamicDocumentService = app.get<DynamicDocumentService>(DynamicDocumentService);
++	});
++
++	afterAll(async () => {
++		await dynamicDocumentModel.deleteMany();
+ 	});
+
+-	describe('getData', () => {
+-		it('should return "Welcome to dynamic-document!"', () => {
+-			expect(service).toBeDefined();
++	describe('Creation', () => {
++		it('Should create dynamic document', async () => {
++			const dynamicDocument = await dynamicDocumentService.createDynamicDocument(reasonGroupIdFixture);
++
++			expect(dynamicDocument).toBeDefined();
++			expect(dynamicDocument?.dynamicDocumentUuid).toBeTruthy();
++			expect(dynamicDocument?.reasonGroupId).toEqual(reasonGroupIdFixture);
++			expect(dynamicDocument?.isActive).toBeTruthy();
++			expect(dynamicDocument?.isDraft).toBeFalsy();
++		});
++
++		//doesn't support transactions
++		it.skip('Should create dynamic document version', async () => {
++			const dynamicDocumentVersion = await dynamicDocumentService.publishDynamicDocument(
++				dynamicDocumentDtoFixture,
++			);
++
++			expect(dynamicDocumentVersion).toBeDefined();
++			expect(dynamicDocumentVersion?.dynamicDocumentUuid).toEqual(dynamicDocumentDtoFixture.dynamicDocumentUuid);
++			expect(dynamicDocumentVersion?.reasonGroupId).toEqual(dynamicDocumentDtoFixture.reasonGroupId);
++			expect(dynamicDocumentVersion?.isActive).toBeTruthy();
++			expect(dynamicDocumentVersion?.isDraft).toBeFalsy();
++		});
++
++		it('Should create dynamic document draft', async () => {
++			const dynamicDocumentDraft = await dynamicDocumentService.createDynamicDocumentDraft(
++				dynamicDocumentDtoFixture,
++			);
++
++			expect(dynamicDocumentDraft).toBeDefined();
++			expect(dynamicDocumentDraft?.dynamicDocumentUuid).toEqual(dynamicDocumentDtoFixture.dynamicDocumentUuid);
++			expect(dynamicDocumentDraft?.reasonGroupId).toEqual(dynamicDocumentDtoFixture.reasonGroupId);
++			expect(dynamicDocumentDraft?.isActive).toBeTruthy();
++			expect(dynamicDocumentDraft?.isDraft).toBeTruthy();
++		});
++	});
++
++	describe('Get', () => {
++		it('Should get active dynamic document', async () => {
++			const dynamicDocument = await dynamicDocumentService.getActiveDynamicDocumentByReasonGroupId(
++				reasonGroupIdFixture,
++			);
++
++			expect(dynamicDocument).toBeDefined();
++			expect(dynamicDocument?.dynamicDocumentUuid).toBeTruthy();
++			expect(dynamicDocument?.reasonGroupId).toEqual(reasonGroupIdFixture);
++			expect(dynamicDocument?.isActive).toBeTruthy();
++			expect(dynamicDocument?.isDraft).toBeFalsy();
++		});
++
++		it('Should get latest dynamic document draft', async () => {
++			const dynamicDocumentDraft = await dynamicDocumentService.getLatestDraftDynamicDocument(
++				dynamicDocumentDtoFixture.reasonGroupId,
++			);
++
++			expect(dynamicDocumentDraft).toBeDefined();
++			expect(dynamicDocumentDraft?.dynamicDocumentUuid).toEqual(dynamicDocumentDtoFixture.dynamicDocumentUuid);
++			expect(dynamicDocumentDraft?.reasonGroupId).toEqual(dynamicDocumentDtoFixture.reasonGroupId);
++			expect(dynamicDocumentDraft?.isActive).toBeTruthy();
++			expect(dynamicDocumentDraft?.isDraft).toBeTruthy();
++		});
++	});
++
++	describe('delete', () => {
++		it('Should delete drafts', async () => {
++			await dynamicDocumentService.deleteDraftsByDynamicDocumentUuid(
++				dynamicDocumentDtoFixture.dynamicDocumentUuid,
++			);
++			const draftDoc = await dynamicDocumentService.getLatestDraftDynamicDocument(
++				dynamicDocumentDtoFixture.reasonGroupId,
++			);
++
++			expect(draftDoc).toBeNull();
+ 		});
+ 	});
+ });

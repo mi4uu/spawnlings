@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext","DOM"
+    ],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": false,
+    "noEmit": true,
+    "explainFiles": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "types": [
+      // "web",
+      "bun-types" // add Bun global
+    ]
+
+  },
+  "include": ["src"],
+  "exclude": [
+    "out",
+    "dist",
+    "node_modules"
+  ]
+}

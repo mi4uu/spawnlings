@@ -1,0 +1,14 @@
+{
+  "name": "glazurnik",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/phoenix": "github:mafredri/phoenix-typings#main"
+  }
+}

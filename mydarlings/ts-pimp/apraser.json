@@ -1,0 +1,1066 @@
+{
+  source: "\n  const a = 1\n  type A = number\n  export {\n    a,\n    type A as B\n  }\n  const damn = (a:string, b):string=>` ${a} o_0 ${b} `\n  export function dupa(){\n    return null\n  }\n  export interface Cosie {\n    name: string,\n    age: number\n\n  }\n  export class Zupa{\n    kind = 'Grzybowa'\n  }\n  export default a\n  "
+}
+[
+  {
+    type: "VariableDeclaration",
+    start: 3,
+    end: 14,
+    loc: {
+      start: {
+        line: 2,
+        column: 2,
+        offset: [Getter],
+        index: 3
+      },
+      end: {
+        line: 2,
+        column: 13,
+        offset: [Getter],
+        index: 14
+      }
+    },
+    declarations: [
+      {
+        type: "VariableDeclarator",
+        start: 9,
+        end: 14,
+        loc: {
+          start: {
+            line: 2,
+            column: 8,
+            offset: [Getter],
+            index: 9
+          },
+          end: {
+            line: 2,
+            column: 13,
+            offset: [Getter],
+            index: 14
+          }
+        },
+        id: {
+          type: "Identifier",
+          start: 9,
+          end: 10,
+          loc: {
+            start: {
+              line: 2,
+              column: 8,
+              offset: [Getter],
+              index: 9
+            },
+            end: {
+              line: 2,
+              column: 9,
+              offset: [Getter],
+              index: 10
+            }
+          },
+          name: "a"
+        },
+        init: {
+          type: "Literal",
+          start: 13,
+          end: 14,
+          loc: {
+            start: {
+              line: 2,
+              column: 12,
+              offset: [Getter],
+              index: 13
+            },
+            end: {
+              line: 2,
+              column: 13,
+              offset: [Getter],
+              index: 14
+            }
+          },
+          value: 1,
+          raw: "1"
+        }
+      }
+    ],
+    kind: "const"
+  }, {
+    type: "TSTypeAliasDeclaration",
+    start: 17,
+    end: 32,
+    loc: {
+      start: {
+        line: 3,
+        column: 2,
+        offset: [Getter],
+        index: 17
+      },
+      end: {
+        line: 3,
+        column: 17,
+        offset: [Getter],
+        index: 32
+      }
+    },
+    id: {
+      type: "Identifier",
+      start: 22,
+      end: 23,
+      loc: {
+        start: {
+          line: 3,
+          column: 7,
+          offset: [Getter],
+          index: 22
+        },
+        end: {
+          line: 3,
+          column: 8,
+          offset: [Getter],
+          index: 23
+        }
+      },
+      name: "A"
+    },
+    typeParameters: undefined,
+    typeAnnotation: {
+      type: "TSNumberKeyword",
+      start: 26,
+      end: 32,
+      loc: {
+        start: {
+          line: 3,
+          column: 11,
+          offset: [Getter],
+          index: 26
+        },
+        end: {
+          line: 3,
+          column: 17,
+          offset: [Getter],
+          index: 32
+        }
+      }
+    }
+  }, {
+    type: "ExportNamedDeclaration",
+    start: 35,
+    end: 70,
+    loc: {
+      start: {
+        line: 4,
+        column: 2,
+        offset: [Getter],
+        index: 35
+      },
+      end: {
+        line: 7,
+        column: 3,
+        offset: [Getter],
+        index: 70
+      }
+    },
+    exportKind: "value",
+    declaration: null,
+    specifiers: [
+      {
+        type: "ExportSpecifier",
+        start: 48,
+        end: 49,
+        loc: {
+          start: {
+            line: 5,
+            column: 4,
+            offset: [Getter],
+            index: 48
+          },
+          end: {
+            line: 5,
+            column: 5,
+            offset: [Getter],
+            index: 49
+          }
+        },
+        local: {
+          type: "Identifier",
+          start: 48,
+          end: 49,
+          loc: {
+            start: {
+              line: 5,
+              column: 4,
+              offset: [Getter],
+              index: 48
+            },
+            end: {
+              line: 5,
+              column: 5,
+              offset: [Getter],
+              index: 49
+            }
+          },
+          name: "a"
+        },
+        exportKind: "value",
+        exported: {
+          type: "Identifier",
+          start: 48,
+          end: 49,
+          loc: {
+            start: {
+              line: 5,
+              column: 4,
+              offset: [Getter],
+              index: 48
+            },
+            end: {
+              line: 5,
+              column: 5,
+              offset: [Getter],
+              index: 49
+            }
+          },
+          name: "a"
+        }
+      }, {
+        type: "ExportSpecifier",
+        start: 55,
+        end: 66,
+        loc: {
+          start: {
+            line: 6,
+            column: 4,
+            offset: [Getter],
+            index: 55
+          },
+          end: {
+            line: 6,
+            column: 15,
+            offset: [Getter],
+            index: 66
+          }
+        },
+        local: {
+          type: "Identifier",
+          start: 60,
+          end: 61,
+          loc: {
+            start: {
+              line: 6,
+              column: 9,
+              offset: [Getter],
+              index: 60
+            },
+            end: {
+              line: 6,
+              column: 10,
+              offset: [Getter],
+              index: 61
+            }
+          },
+          name: "A"
+        },
+        exported: {
+          type: "Identifier",
+          start: 65,
+          end: 66,
+          loc: {
+            start: {
+              line: 6,
+              column: 14,
+              offset: [Getter],
+              index: 65
+            },
+            end: {
+              line: 6,
+              column: 15,
+              offset: [Getter],
+              index: 66
+            }
+          },
+          name: "B"
+        },
+        exportKind: "type"
+      }
+    ],
+    source: null
+  }, {
+    type: "VariableDeclaration",
+    start: 73,
+    end: 125,
+    loc: {
+      start: {
+        line: 8,
+        column: 2,
+        offset: [Getter],
+        index: 73
+      },
+      end: {
+        line: 8,
+        column: 54,
+        offset: [Getter],
+        index: 125
+      }
+    },
+    declarations: [
+      {
+        type: "VariableDeclarator",
+        start: 79,
+        end: 125,
+        loc: {
+          start: {
+            line: 8,
+            column: 8,
+            offset: [Getter],
+            index: 79
+          },
+          end: {
+            line: 8,
+            column: 54,
+            offset: [Getter],
+            index: 125
+          }
+        },
+        id: {
+          type: "Identifier",
+          start: 79,
+          end: 83,
+          loc: {
+            start: {
+              line: 8,
+              column: 8,
+              offset: [Getter],
+              index: 79
+            },
+            end: {
+              line: 8,
+              column: 12,
+              offset: [Getter],
+              index: 83
+            }
+          },
+          name: "damn"
+        },
+        init: {
+          type: "ArrowFunctionExpression",
+          start: 86,
+          end: 125,
+          loc: {
+            start: {
+              line: 8,
+              column: 15,
+              offset: [Getter],
+              index: 86
+            },
+            end: {
+              line: 8,
+              column: 54,
+              offset: [Getter],
+              index: 125
+            }
+          },
+          returnType: {
+            type: "TSTypeAnnotation",
+            start: 99,
+            end: 106,
+            loc: {
+              start: {
+                line: 8,
+                column: 28,
+                offset: [Getter],
+                index: 99
+              },
+              end: {
+                line: 8,
+                column: 35,
+                offset: [Getter],
+                index: 106
+              }
+            },
+            typeAnnotation: {
+              type: "TSStringKeyword",
+              start: 100,
+              end: 106,
+              loc: {
+                start: {
+                  line: 8,
+                  column: 29,
+                  offset: [Getter],
+                  index: 100
+                },
+                end: {
+                  line: 8,
+                  column: 35,
+                  offset: [Getter],
+                  index: 106
+                }
+              }
+            }
+          },
+          id: null,
+          expression: true,
+          generator: false,
+          async: false,
+          params: [
+            {
+              type: "Identifier",
+              start: 87,
+              end: undefined,
+              loc: {
+                start: {
+                  line: 8,
+                  column: 16,
+                  offset: [Getter],
+                  index: 87
+                },
+                end: 95
+              },
+              name: "a",
+              typeAnnotation: {
+                type: "TSTypeAnnotation",
+                start: 88,
+                end: 95,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                },
+                typeAnnotation: {
+                  type: "TSStringKeyword",
+                  start: 89,
+                  end: 95,
+                  loc: [Object ...]
+                }
+              }
+            }, {
+              type: "Identifier",
+              start: 97,
+              end: 98,
+              loc: {
+                start: {
+                  line: 8,
+                  column: 26,
+                  offset: [Getter],
+                  index: 97
+                },
+                end: {
+                  line: 8,
+                  column: 27,
+                  offset: [Getter],
+                  index: 98
+                }
+              },
+              name: "b"
+            }
+          ],
+          body: {
+            type: "TemplateLiteral",
+            start: 108,
+            end: 125,
+            loc: {
+              start: {
+                line: 8,
+                column: 37,
+                offset: [Getter],
+                index: 108
+              },
+              end: {
+                line: 8,
+                column: 54,
+                offset: [Getter],
+                index: 125
+              }
+            },
+            expressions: [
+              {
+                type: "Identifier",
+                start: 112,
+                end: 113,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                },
+                name: "a"
+              }, {
+                type: "Identifier",
+                start: 121,
+                end: 122,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                },
+                name: "b"
+              }
+            ],
+            quasis: [
+              {
+                type: "TemplateElement",
+                start: 109,
+                end: 110,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                },
+                value: {
+                  raw: " ",
+                  cooked: " "
+                },
+                tail: false
+              }, {
+                type: "TemplateElement",
+                start: 114,
+                end: 119,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                },
+                value: {
+                  raw: " o_0 ",
+                  cooked: " o_0 "
+                },
+                tail: false
+              }, {
+                type: "TemplateElement",
+                start: 123,
+                end: 124,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                },
+                value: {
+                  raw: " ",
+                  cooked: " "
+                },
+                tail: true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    kind: "const"
+  }, {
+    type: "ExportNamedDeclaration",
+    start: 128,
+    end: 171,
+    loc: {
+      start: {
+        line: 9,
+        column: 2,
+        offset: [Getter],
+        index: 128
+      },
+      end: {
+        line: 11,
+        column: 3,
+        offset: [Getter],
+        index: 171
+      }
+    },
+    exportKind: "value",
+    declaration: {
+      type: "FunctionDeclaration",
+      start: 135,
+      end: 171,
+      loc: {
+        start: {
+          line: 9,
+          column: 9,
+          offset: [Getter],
+          index: 135
+        },
+        end: {
+          line: 11,
+          column: 3,
+          offset: [Getter],
+          index: 171
+        }
+      },
+      id: {
+        type: "Identifier",
+        start: 144,
+        end: 148,
+        loc: {
+          start: {
+            line: 9,
+            column: 18,
+            offset: [Getter],
+            index: 144
+          },
+          end: {
+            line: 9,
+            column: 22,
+            offset: [Getter],
+            index: 148
+          }
+        },
+        name: "dupa"
+      },
+      expression: false,
+      generator: false,
+      async: false,
+      params: [],
+      body: {
+        type: "BlockStatement",
+        start: 150,
+        end: 171,
+        loc: {
+          start: {
+            line: 9,
+            column: 24,
+            offset: [Getter],
+            index: 150
+          },
+          end: {
+            line: 11,
+            column: 3,
+            offset: [Getter],
+            index: 171
+          }
+        },
+        body: [
+          {
+            type: "ReturnStatement",
+            start: 156,
+            end: 167,
+            loc: {
+              start: {
+                line: 10,
+                column: 4,
+                offset: [Getter],
+                index: 156
+              },
+              end: {
+                line: 10,
+                column: 15,
+                offset: [Getter],
+                index: 167
+              }
+            },
+            argument: {
+              type: "Literal",
+              start: 163,
+              end: 167,
+              loc: {
+                start: {
+                  line: 10,
+                  column: 11,
+                  offset: [Getter],
+                  index: 163
+                },
+                end: {
+                  line: 10,
+                  column: 15,
+                  offset: [Getter],
+                  index: 167
+                }
+              },
+              value: null,
+              raw: "null"
+            }
+          }
+        ]
+      }
+    },
+    specifiers: [],
+    source: null
+  }, {
+    type: "ExportNamedDeclaration",
+    start: 174,
+    end: 237,
+    loc: {
+      start: {
+        line: 12,
+        column: 2,
+        offset: [Getter],
+        index: 174
+      },
+      end: {
+        line: 16,
+        column: 3,
+        offset: [Getter],
+        index: 237
+      }
+    },
+    exportKind: "type",
+    declaration: {
+      type: "TSInterfaceDeclaration",
+      start: 181,
+      end: 237,
+      loc: {
+        start: {
+          line: 12,
+          column: 9,
+          offset: [Getter],
+          index: 181
+        },
+        end: {
+          line: 16,
+          column: 3,
+          offset: [Getter],
+          index: 237
+        }
+      },
+      id: {
+        type: "Identifier",
+        start: 191,
+        end: 196,
+        loc: {
+          start: {
+            line: 12,
+            column: 19,
+            offset: [Getter],
+            index: 191
+          },
+          end: {
+            line: 12,
+            column: 24,
+            offset: [Getter],
+            index: 196
+          }
+        },
+        name: "Cosie"
+      },
+      typeParameters: undefined,
+      body: {
+        type: "TSInterfaceBody",
+        start: 197,
+        end: 237,
+        loc: {
+          start: {
+            line: 12,
+            column: 25,
+            offset: [Getter],
+            index: 197
+          },
+          end: {
+            line: 16,
+            column: 3,
+            offset: [Getter],
+            index: 237
+          }
+        },
+        body: [
+          {
+            type: "TSPropertySignature",
+            start: 203,
+            end: 216,
+            loc: {
+              start: {
+                line: 13,
+                column: 4,
+                offset: [Getter],
+                index: 203
+              },
+              end: {
+                line: 13,
+                column: 17,
+                offset: [Getter],
+                index: 216
+              }
+            },
+            computed: false,
+            key: {
+              type: "Identifier",
+              start: 203,
+              end: 207,
+              loc: {
+                start: {
+                  line: 13,
+                  column: 4,
+                  offset: [Getter],
+                  index: 203
+                },
+                end: {
+                  line: 13,
+                  column: 8,
+                  offset: [Getter],
+                  index: 207
+                }
+              },
+              name: "name"
+            },
+            typeAnnotation: {
+              type: "TSTypeAnnotation",
+              start: 207,
+              end: 215,
+              loc: {
+                start: {
+                  line: 13,
+                  column: 8,
+                  offset: [Getter],
+                  index: 207
+                },
+                end: {
+                  line: 13,
+                  column: 16,
+                  offset: [Getter],
+                  index: 215
+                }
+              },
+              typeAnnotation: {
+                type: "TSStringKeyword",
+                start: 209,
+                end: 215,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                }
+              }
+            }
+          }, {
+            type: "TSPropertySignature",
+            start: 221,
+            end: 232,
+            loc: {
+              start: {
+                line: 14,
+                column: 4,
+                offset: [Getter],
+                index: 221
+              },
+              end: {
+                line: 14,
+                column: 15,
+                offset: [Getter],
+                index: 232
+              }
+            },
+            computed: false,
+            key: {
+              type: "Identifier",
+              start: 221,
+              end: 224,
+              loc: {
+                start: {
+                  line: 14,
+                  column: 4,
+                  offset: [Getter],
+                  index: 221
+                },
+                end: {
+                  line: 14,
+                  column: 7,
+                  offset: [Getter],
+                  index: 224
+                }
+              },
+              name: "age"
+            },
+            typeAnnotation: {
+              type: "TSTypeAnnotation",
+              start: 224,
+              end: 232,
+              loc: {
+                start: {
+                  line: 14,
+                  column: 7,
+                  offset: [Getter],
+                  index: 224
+                },
+                end: {
+                  line: 14,
+                  column: 15,
+                  offset: [Getter],
+                  index: 232
+                }
+              },
+              typeAnnotation: {
+                type: "TSNumberKeyword",
+                start: 226,
+                end: 232,
+                loc: {
+                  start: [Object ...],
+                  end: [Object ...]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    specifiers: [],
+    source: null
+  }, {
+    type: "ExportNamedDeclaration",
+    start: 240,
+    end: 284,
+    loc: {
+      start: {
+        line: 17,
+        column: 2,
+        offset: [Getter],
+        index: 240
+      },
+      end: {
+        line: 19,
+        column: 3,
+        offset: [Getter],
+        index: 284
+      }
+    },
+    exportKind: "value",
+    declaration: {
+      type: "ClassDeclaration",
+      start: 247,
+      end: 284,
+      loc: {
+        start: {
+          line: 17,
+          column: 9,
+          offset: [Getter],
+          index: 247
+        },
+        end: {
+          line: 19,
+          column: 3,
+          offset: [Getter],
+          index: 284
+        }
+      },
+      id: {
+        type: "Identifier",
+        start: 253,
+        end: 257,
+        loc: {
+          start: {
+            line: 17,
+            column: 15,
+            offset: [Getter],
+            index: 253
+          },
+          end: {
+            line: 17,
+            column: 19,
+            offset: [Getter],
+            index: 257
+          }
+        },
+        name: "Zupa"
+      },
+      superClass: null,
+      body: {
+        type: "ClassBody",
+        start: 257,
+        end: 284,
+        loc: {
+          start: {
+            line: 17,
+            column: 19,
+            offset: [Getter],
+            index: 257
+          },
+          end: {
+            line: 19,
+            column: 3,
+            offset: [Getter],
+            index: 284
+          }
+        },
+        body: [
+          {
+            type: "PropertyDefinition",
+            start: 263,
+            end: 280,
+            loc: {
+              start: {
+                line: 18,
+                column: 4,
+                offset: [Getter],
+                index: 263
+              },
+              end: {
+                line: 18,
+                column: 21,
+                offset: [Getter],
+                index: 280
+              }
+            },
+            static: false,
+            computed: false,
+            key: {
+              type: "Identifier",
+              start: 263,
+              end: 267,
+              loc: {
+                start: {
+                  line: 18,
+                  column: 4,
+                  offset: [Getter],
+                  index: 263
+                },
+                end: {
+                  line: 18,
+                  column: 8,
+                  offset: [Getter],
+                  index: 267
+                }
+              },
+              name: "kind"
+            },
+            value: {
+              type: "Literal",
+              start: 270,
+              end: 280,
+              loc: {
+                start: {
+                  line: 18,
+                  column: 11,
+                  offset: [Getter],
+                  index: 270
+                },
+                end: {
+                  line: 18,
+                  column: 21,
+                  offset: [Getter],
+                  index: 280
+                }
+              },
+              value: "Grzybowa",
+              raw: "'Grzybowa'"
+            }
+          }
+        ]
+      }
+    },
+    specifiers: [],
+    source: null
+  }, {
+    type: "ExportDefaultDeclaration",
+    start: 287,
+    end: 303,
+    loc: {
+      start: {
+        line: 20,
+        column: 2,
+        offset: [Getter],
+        index: 287
+      },
+      end: {
+        line: 20,
+        column: 18,
+        offset: [Getter],
+        index: 303
+      }
+    },
+    exportKind: "value",
+    declaration: {
+      type: "Identifier",
+      start: 302,
+      end: 303,
+      loc: {
+        start: {
+          line: 20,
+          column: 17,
+          offset: [Getter],
+          index: 302
+        },
+        end: {
+          line: 20,
+          column: 18,
+          offset: [Getter],
+          index: 303
+        }
+      },
+      name: "a"
+    }
+  }
+]

@@ -1,0 +1,79 @@
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/string name.ts, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/string name.tsx, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/string name.d.ts, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/@types/string name.d.ts, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/string name.js, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/string name.jsx, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/module-name.ts, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/module-name.tsx, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/module-name.d.ts, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/@types/module-name.d.ts, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/module-name.js, RETURNED: false 
+called fileExists: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/module-name.jsx, RETURNED: false 
+called getDirectories: /Users/zeno/Projects/spawnlings/mydarlings/ts-pimp/node_modules/@types
+called writeFile: file_0.js
+called writeFile: file_1.js
+called writeFile: file_2.js
+called writeFile: file_3.js
+called writeFile: file_4.js
+called writeFile: file_5.js
+called writeFile: file_6.js
+called writeFile: file_7.js
+called writeFile: file_8.js
+called writeFile: file_9.js
+called writeFile: file_10.js
+called writeFile: file_12.js
+called writeFile: file_13.js
+called writeFile: file_14.js
+called writeFile: file_15.js
+called writeFile: file_16.js
+called writeFile: file_17.js
+called writeFile: file_18.js
+called writeFile: file_19.js
+called writeFile: file_20.js
+called writeFile: file_21.js
+called writeFile: file_22.js
+called writeFile: file_23.js
+called writeFile: file_24.js
+called writeFile: file_25.js
+called writeFile: file_26.js
+called writeFile: file_27.js
+called writeFile: file_28.js
+{
+  emited: {
+    emitSkipped: false,
+    diagnostics: [],
+    emittedFiles: undefined,
+    sourceMaps: undefined
+  }
+}
+checking file: file_0.ts
+checking file: file_1.ts
+checking file: file_2.ts
+checking file: file_3.ts
+checking file: file_4.ts
+checking file: file_5.ts
+checking file: file_6.ts
+checking file: file_7.ts
+checking file: file_8.ts
+checking file: file_9.ts
+checking file: file_10.ts
+checking file: file_12.ts
+checking file: file_13.ts
+checking file: file_14.ts
+checking file: file_15.ts
+checking file: file_16.ts
+checking file: file_17.ts
+checking file: file_18.ts
+checking file: file_19.ts
+checking file: file_20.ts
+checking file: file_21.ts
+checking file: file_22.ts
+checking file: file_23.ts
+checking file: file_24.ts
+checking file: file_25.ts
+checking file: file_26.ts
+checking file: file_27.ts
+checking file: file_28.ts
+FirstStatement
+--
