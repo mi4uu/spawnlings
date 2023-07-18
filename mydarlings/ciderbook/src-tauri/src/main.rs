@@ -5,7 +5,8 @@ use tauri::{SystemTray, SystemTrayMenu};
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 
 mod all_windows_info;
-use all_windows_info::get_all_windows_info; // Import the function
+use all_windows_info::get_all_windows_info;
+use windowlist::get_window_list_without_desktop; // Import the function
 
 mod windowlist;
 // Import the function
@@ -16,7 +17,8 @@ fn greet(name: &str) -> String {
 }
 #[tauri::command]
 fn get_windows_list() -> Result<String, String> {
-    let windows_list = get_all_windows_info();
+    let windows_list = get_window_list_without_desktop();
+    println!("windows_list: {:?}", windows_list);
     match serde_json::to_string(&windows_list) {
         Ok(s) => Ok(s),
         Err(e) => Err(e.to_string()),
